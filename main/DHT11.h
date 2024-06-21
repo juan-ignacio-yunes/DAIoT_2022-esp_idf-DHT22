@@ -1,11 +1,11 @@
 /* 
 
-	DHT22 temperature sensor driver
+	DHT11 temperature sensor driver
 
 */
 
-#ifndef DHT22_H_  
-#define DHT22_H_
+#ifndef DHT11_H_  
+#define DHT11_H_
 
 #define DHT_OK 0
 #define DHT_CHECKSUM_ERROR -1

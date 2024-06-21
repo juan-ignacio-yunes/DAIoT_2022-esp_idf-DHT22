@@ -14,7 +14,7 @@
 #include "freertos/queue.h"
 #include "driver/gpio.h"
 
-#include "DHT22.h"
+#include "DHT11.h"
 
 /**
  * Brief:
@@ -65,7 +65,7 @@ static void counter_task(void* arg)
     int cnt = 0;
     while(true) {
         printf("Ejemplo TASKS AdP_2022 - Counts: %d\n", cnt++);
-        vTaskDelay(1000 / portTICK_RATE_MS);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }
 
@@ -86,7 +86,7 @@ void DHT_task(void *pvParameter)
 		
 		// -- wait at least 2 sec before reading again ------------
 		// The interval of whole process must be beyond 2 seconds !! 
-		vTaskDelay( 3000 / portTICK_RATE_MS );
+		vTaskDelay( 3000 / portTICK_PERIOD_MS );
 	}
 }
 
@@ -114,12 +114,12 @@ void app_main(void)
     //start counter task
     xTaskCreate(counter_task, "counter_task", 2048, NULL, 10, NULL);
 
-    printf("Minimum free heap size: %d bytes\n", esp_get_minimum_free_heap_size());
+    printf("Minimum free heap size: %ld bytes\n", esp_get_minimum_free_heap_size());
 
 	xTaskCreate( &DHT_task, "DHT_task", 2048, NULL, 5, NULL );
 
     while(1) {
-        vTaskDelay(1000 / portTICK_RATE_MS);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
         // idle
     }
 }

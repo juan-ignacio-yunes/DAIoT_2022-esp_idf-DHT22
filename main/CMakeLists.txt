@@ -1,2 +1,2 @@
-idf_component_register(SRCS "dth22_main.c" "DHT22.c"
+idf_component_register(SRCS "dth11_main.c" "DHT11.c"
                     INCLUDE_DIRS ".")
